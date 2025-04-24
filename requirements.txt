@@ -1,3 +1,17 @@
+# requirements.txt
+
+# Framework web principal
 Flask>=2.0
-google-cloud-firestore>=2.5 # Verifique a versão mais recente
-gunicorn>=20.0 # Servidor WSGI para produção
+
+# Para fazer requisições HTTP (monitorar os sites)
+requests>=2.25
+
+# Cliente Python para o Google Cloud Firestore
+google-cloud-firestore>=2.5
+
+# Servidor WSGI para rodar Flask em produção (usado no entrypoint/CMD)
+gunicorn>=20.0
+
+# Adicione quaisquer outras bibliotecas que seu app.py importe e utilize
+# Exemplo: se você usasse manipulação de datas avançada:
+# python-dateutil>=2.8
