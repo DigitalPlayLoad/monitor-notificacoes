@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacroDroid - Notificações</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MacroDroid - Monitor de Palavras-chave</h1>
+            <p>Visualize as palavras-chave detectadas pelo MacroDroid em tempo real</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total de Notificações</h3>
+                    <p id="total-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Aplicativos Monitorados</h3>
+                    <p id="app-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Palavras-chave Únicas</h3>
+                    <p id="keyword-count">0</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="notificationChart"></canvas>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Filtrar por palavra-chave ou aplicativo...">
+                <button id="search-btn">Buscar</button>
+            </div>
+            <div class="filter-options">
+                <select id="app-filter">
+                    <option value="">Todos os Aplicativos</option>
+                </select>
+                <button id="clear-btn" class="danger">Limpar Notificações</button>
+            </div>
+        </div>
+
+        <div class="notification-list">
+            <h2>Notificações Recentes</h2>
+            <div id="notifications-container">
+                <p class="empty-message">Nenhuma notificação recebida ainda.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Integração MacroDroid - Desenvolvido para monitoramento de palavras-chave</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
