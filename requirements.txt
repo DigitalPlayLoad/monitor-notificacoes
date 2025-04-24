@@ -1,0 +1,3 @@
+Flask>=2.0
+google-cloud-firestore>=2.5 # Verifique a versão mais recente
+gunicorn>=20.0 # Servidor WSGI para produção
