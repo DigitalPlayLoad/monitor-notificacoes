@@ -1,0 +1,42 @@
+# Arquivo .gcloudignore
+# Especifica quais arquivos NÃO devem ser enviados para o Google Cloud durante o deploy.
+
+# Ignorar o diretório do Git
+.git/
+
+# Ignorar arquivos de configuração do Git e do próprio gcloudignore
+.gitignore
+.gcloudignore
+
+# Ignorar ambientes virtuais Python
+venv/
+*.venv/
+env/
+ENV/
+
+# Ignorar caches e arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignorar arquivos de banco de dados SQLite (não devem ser usados no Cloud)
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+
+# Ignorar arquivos de ambiente (gerenciar segredos via Secret Manager ou env_variables no app.yaml)
+.env
+*.env
+
+# Ignorar arquivos específicos do editor/IDE (Exemplos)
+.vscode/
+.idea/
+*.DS_Store
+
+# Outros arquivos/pastas de desenvolvimento que não precisam ir para produção
+# node_modules/
+# tests/
+# *.log
