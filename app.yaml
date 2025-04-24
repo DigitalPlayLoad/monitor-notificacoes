@@ -1,52 +1,37 @@
 # app.yaml
-# Configuração para Google App Engine - Ambiente Flexível
+# Configuração para Google App Engine - Ambiente Flexível com Dockerfile
 
-# Define o runtime como Python
-runtime: python
+# Indica ao App Engine para usar o Dockerfile na raiz do projeto
+runtime: custom
 
-# Especifica o ambiente Flexível (necessário para Gunicorn, threads de fundo, etc.)
+# Ainda necessário para especificar o ambiente Flexível
 env: flex
 
-# Comando para iniciar a aplicação web usando Gunicorn
-# Gunicorn é um servidor WSGI recomendado para produção em Python.
-# :$PORT é uma variável de ambiente fornecida pelo App Engine que indica a porta
-# na qual sua aplicação deve escutar.
-# app:app refere-se ao objeto 'app' (Flask) dentro do arquivo 'app.py'.
-entrypoint: gunicorn -b :$PORT app:app
+# REMOVA ou COMENTE a linha 'entrypoint', pois o comando é definido no Dockerfile (CMD)
+# entrypoint: gunicorn -b :$PORT app:app
 
-# Especifica a versão do Python a ser usada no container.
-# Escolha uma versão suportada pelo App Engine Flex (ex: 3.9, 3.10, 3.11, 3.12).
-# É preferível usar 'runtime_version' em vez do antigo 'runtime_config'.
-runtime_version: '3.10' # Você pode ajustar para 3.9, 3.11, 3.12 conforme necessário
+# REMOVA ou COMENTE a linha 'runtime_version' ou 'runtime_config',
+# pois a versão do Python é definida na cláusula FROM do Dockerfile.
+# runtime_version: '3.10'
+# runtime_config:
+#   python_version: 3
 
 # --- Configurações Opcionais ---
-# Descomente e ajuste conforme necessário para controlar custos e performance.
-
-# Exemplo de escalonamento automático (padrão se não especificado)
+# As configurações de escalonamento e recursos ainda são válidas aqui.
+# Elas controlam a infraestrutura do App Engine, não o container em si.
 # automatic_scaling:
-#   min_num_instances: 1      # Mínimo de instâncias rodando
-#   max_num_instances: 3      # Máximo de instâncias para escalar
+#   min_num_instances: 1
+#   max_num_instances: 3
 #   cpu_utilization:
-#     target_utilization: 0.7 # Tenta manter o uso de CPU abaixo de 70%
-
-# Exemplo de recursos por instância
+#     target_utilization: 0.7
 # resources:
-#   cpu: 1                    # Número de vCPUs virtuais
-#   memory_gb: 0.6            # Memória RAM em Gigabytes
-#   disk_size_gb: 10          # Tamanho do disco da instância (temporário)
-
-# Exemplo de verificação de saúde (liveness/readiness checks)
-# liveness_check:
-#   path: "/liveness_check" # Rota na sua app para verificar se está viva
+#   cpu: 1
+#   memory_gb: 0.6
+#   disk_size_gb: 10
+# health_check: # Verificações de saúde ainda são configuradas aqui
+#   enable_health_check: True
 #   check_interval_sec: 30
 #   timeout_sec: 4
-#   failure_threshold: 2
-#   success_threshold: 2
-#
-# readiness_check:
-#   path: "/readiness_check" # Rota na sua app para verificar se está pronta para receber tráfego
-#   check_interval_sec: 5
-#   timeout_sec: 4
-#   failure_threshold: 2
-#   success_threshold: 2
-#   app_start_timeout_sec: 300
+#   unhealthy_threshold: 2
+#   healthy_threshold: 2
+
