@@ -1,0 +1,27 @@
+# .dockerignore
+# Arquivos/Pastas a serem ignorados durante o build da imagem Docker
+
+Dockerfile
+.dockerignore
+.git/
+.gitignore
+.gcloudignore
+README.md
+venv/
+*.venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+.env
+*.env
+.vscode/
+.idea/
+*.DS_Store
