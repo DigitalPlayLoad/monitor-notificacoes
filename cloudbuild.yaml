@@ -1,0 +1,15 @@
+# cloudbuild.yaml
+# Configuração do Cloud Build para implantar no App Engine Flex
+# ESTE ARQUIVO NÃO PRECISA DE MUDANÇAS para usar um Dockerfile como âncora.
+
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+    - 'app'
+    - 'deploy'
+    # O comando 'app deploy' detectará 'runtime: custom' no app.yaml
+    # e usará o Dockerfile automaticamente.
+    - '--quiet' # Suprime prompts interativos, essencial para automação.
+
+# Opcional: Aumentar o tempo limite se o deploy do App Engine Flex demorar mais.
+timeout: '1600s' # Exemplo: ~26 minutos
